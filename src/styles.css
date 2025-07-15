@@ -8,12 +8,8 @@
 
 /*Header styles*/
 header {
-  background: #1f94ce;
+  background: #137baf;
   /* padding-top: 20px; */
-}
-
-.nav-brand {
-  color: white;
 }
 
 /*Main styles*/
@@ -26,9 +22,54 @@ main {
 
 /*Footer styles*/
 footer {
-  background: #177cae;
-  padding: 1rem 0;
+  background: #137baf;
+  padding: 0.2rem 0;
   text-align: center;
   font-size: 0.9rem;
   color: white;
+}
+
+.navbar {
+  background: transparent;
+}
+
+.nav-brand:hover {
+  cursor: pointer;
+}
+
+.nav-link {
+  color: rgba(254, 254, 254, 0.611);
+}
+
+.nav-link:link {
+  color: rgba(254, 254, 254, 0.611);
+}
+
+.nav-link:active {
+  color: rgba(254, 254, 254, 0.611);
+}
+
+.nav-link:visited {
+  color: rgba(254, 254, 254, 0.611);
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-collapse {
+  background-color: rgb(17, 35, 75);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px #062737;
+}
+
+@media (min-width: 992px) {
+  .nav-collapse {
+    background-color: transparent !important;
+    max-width: 50%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
 }
