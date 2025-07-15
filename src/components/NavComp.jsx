@@ -5,7 +5,7 @@ const NavComp = () => {
   return (
     <Navbar expand="lg" className="navbar py-2">
       <Container>
-        <Navbar.Brand className="nav-brand text-white fs-1">
+        <Navbar.Brand className="nav-brand text-white fs-2 fw-bold">
           💡Handipro
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

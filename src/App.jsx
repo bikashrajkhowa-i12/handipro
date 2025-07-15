@@ -5,10 +5,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 
 import NavComp from "./components/NavComp";
-import LandingPage from "./LandingPage";
-import Markets from "./modules/Markets";
-import Features from "./modules/Features";
-import Learn from "./modules/Learn";
+import LandingPage from "./pages/LandingPage";
+import Markets from "./pages/Markets";
+import Features from "./pages/Features";
+import Learn from "./pages/Learn";
 
 const App = () => {
   return (

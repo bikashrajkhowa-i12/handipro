@@ -29,6 +29,7 @@ footer {
   color: white;
 }
 
+/*Nav Styles*/
 .navbar {
   background: transparent;
 }
@@ -72,4 +73,22 @@ footer {
     padding: 0;
     box-shadow: none;
   }
+}
+
+.main-section {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.right-arrow {
+  padding-bottom: 2px;
+  margin-left: 3px;
+  transition: transform 0.3s ease;
+}
+
+.right-arrow:hover {
+  transform: translateX(8px);
 }
