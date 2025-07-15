@@ -1,0 +1,34 @@
+/* Global page container */
+.app-container {
+  font-family: "Segoe UI", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/*Header styles*/
+header {
+  background: #1f94ce;
+  /* padding-top: 20px; */
+}
+
+.nav-brand {
+  color: white;
+}
+
+/*Main styles*/
+main {
+  flex: 1;
+  color: black;
+  padding: 2rem 1rem;
+  background: linear-gradient(to bottom, #f5f9ff, #2e4b71);
+}
+
+/*Footer styles*/
+footer {
+  background: #177cae;
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: white;
+}
