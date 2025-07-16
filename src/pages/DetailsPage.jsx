@@ -3,8 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { startCase } from "lodash";
 import { Container } from "react-bootstrap";
 
-import { ENABLED_MARKETS } from "../configs/constants";
-
 const DetailsPage = () => {
   const navigate = useNavigate();
   const location = useLocation();

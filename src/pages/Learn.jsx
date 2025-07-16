@@ -1,4 +1,4 @@
-import { Container, Nav } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { markets } from "../interfaceTexts/markets";
 
 const Learn = () => {
