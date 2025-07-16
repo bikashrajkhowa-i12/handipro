@@ -1,0 +1,74 @@
+/* Global page container */
+.app-container {
+  font-family: "Segoe UI", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 0;
+}
+
+.app-container::before {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: url("/src/assets/bg2.jpg") center/cover no-repeat;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/*Header styles*/
+header {
+  background: transparent;
+}
+
+/*Main styles*/
+main {
+  flex: 1;
+  color: black;
+  padding: 2rem 1rem;
+}
+
+/*Footer styles*/
+footer {
+  background: transparent;
+  padding: 0.2rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.main-section {
+  min-height: 80vh;
+  margin-top: 6rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 0;
+  color: white;
+}
+
+.right-arrow {
+  padding-bottom: 2px;
+  margin-left: 3px;
+  transition: transform 0.3s ease;
+}
+
+.right-arrow:hover {
+  transform: translateX(8px);
+}
+
+/*Market styles*/
+
+.markets:not(:last-child) {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 4rem;
+}
+
+.market-category {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}

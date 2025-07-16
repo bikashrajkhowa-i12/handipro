@@ -1,12 +1,20 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavComp = () => {
+  const navigate = useNavigate();
+  const onClickLogo = () => {
+    navigate("/home");
+  };
+
   return (
-    <Navbar expand="lg" className="navbar py-2">
+    <Navbar expand="lg" className="navbar py-2" fixed="top">
       <Container>
-        <Navbar.Brand className="nav-brand text-white fs-2 fw-bold">
-          💡Handipro
+        <Navbar.Brand
+          className="nav-brand text-white fs-1 fw-bold"
+          onClick={() => onClickLogo()}
+        >
+          Handipro⚽️
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="nav-collapse">

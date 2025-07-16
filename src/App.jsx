@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles.css";
+import "./styles/app.css";
 
 import NavComp from "./components/NavComp";
 import LandingPage from "./pages/LandingPage";
@@ -27,7 +27,7 @@ const App = () => {
           </Routes>
         </main>
         <footer>
-          <p>© {new Date().getFullYear()} Created by Bikash </p>
+          <p>© {new Date().getFullYear()} Handipro </p>
         </footer>
       </div>
     </Router>

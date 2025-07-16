@@ -1,0 +1,69 @@
+/*Nav Styles*/
+.navbar {
+  background: rgba(255, 255, 255, 0); /* semi-transparent */
+  backdrop-filter: blur(50px); /* blur effect */
+  -webkit-backdrop-filter: blur(50px); /*Safari support */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1050;
+}
+
+.nav-brand:hover {
+  cursor: pointer;
+}
+
+.nav-link {
+  color: rgba(254, 254, 254, 0.611);
+}
+
+.nav-link:link {
+  color: rgba(254, 254, 254, 0.611);
+}
+
+.nav-link:active {
+  color: rgba(254, 254, 254, 0.611);
+}
+
+.nav-link:visited {
+  color: rgba(254, 254, 254, 0.611);
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-collapse {
+  background-color: rgb(17, 35, 75);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px #062737;
+}
+
+@media (min-width: 992px) {
+  .nav-collapse {
+    background-color: transparent !important;
+    max-width: 50%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+/*Card styles*/
+
+.card {
+  width: 18rem;
+  background: rgba(255, 255, 255, 0.649);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.725);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:active {
+  transform: scale(0.98);
+}
