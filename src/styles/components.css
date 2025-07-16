@@ -51,7 +51,7 @@
 /*Card styles*/
 
 .card {
-  width: 18rem;
+  width: 230px;
   background: rgba(255, 255, 255, 0.649);
   transition: all 0.3s ease;
 }

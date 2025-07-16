@@ -9,6 +9,7 @@ import LandingPage from "./pages/LandingPage";
 import Markets from "./pages/Markets";
 import Features from "./pages/Features";
 import Learn from "./pages/Learn";
+import DetailsPage from "./pages/DetailsPage";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/markets" element={<Markets />} />
             <Route path="/features" element={<Features />} />
             <Route path="/learn" element={<Learn />} />
+            <Route path="/details" element={<DetailsPage />} />
           </Routes>
         </main>
         <footer>

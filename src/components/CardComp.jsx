@@ -7,14 +7,22 @@ const CardComp = (props) => {
     keyName = "",
     title = "",
     header = "",
-    description = "",
+    info = "",
+    onClickCard,
   } = props || {};
   return (
-    <Card className="card shadow-lg d-flex flex-column h-200 mb-5">
+    <Card
+      className="card shadow-lg d-flex flex-column h-200 mb-5"
+      onClick={
+        onClickCard && ENABLED_MARKETS.includes(keyName)
+          ? () => onClickCard(keyName)
+          : undefined
+      }
+    >
       {header && <Card.Header>{header}</Card.Header>}
       <Card.Body className="d-flex flex-column flex-grow-1">
         <Card.Title>{title}</Card.Title>
-        <Card.Text className="text-muted">{description}</Card.Text>
+        <Card.Text className="text-muted">{info}</Card.Text>
         <div className="mt-auto">
           {ENABLED_MARKETS.includes(keyName) ? (
             <Badge bg="success" text="light" className="rounded-pill">

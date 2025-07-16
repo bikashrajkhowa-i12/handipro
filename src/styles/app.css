@@ -72,3 +72,9 @@ footer {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
+
+.container-section {
+  padding-top: 4rem;
+  background: rgba(255, 255, 255, 0.074);
+  border-radius: 20px;
+}
