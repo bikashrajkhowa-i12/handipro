@@ -67,3 +67,8 @@
 .card:active {
   transform: scale(0.98);
 }
+
+.calculator-container {
+  background: rgba(255, 255, 255, 0.827);
+  border-radius: 15px;
+}
