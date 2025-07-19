@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 
 import CardComp from "../components/CardComp";
 import { markets } from "../interfaceTexts/markets";
+import NavigateBack from "../components/NavigateBack";
 
 const Markets = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Markets = () => {
 
   return (
     <div className="main-section">
+      <NavigateBack />
       <Container className="container-section">
         <h1 className="mb-5 lead display-4 text-center">Markets</h1>
         {markets?.map((obj) => {

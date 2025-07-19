@@ -1,10 +1,12 @@
 import { Container } from "react-bootstrap";
 import { markets } from "../interfaceTexts/markets";
+import NavigateBack from "../components/NavigateBack";
 
 const Learn = () => {
   return (
     <div className="main-section">
-      <Container className="container-section">
+      <NavigateBack />
+      <Container className="container-section p-5">
         <h1 className="lead display-4 mb-5">Learn</h1>
         <div className="p-4">
           {markets.map((e) => {

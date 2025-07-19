@@ -13,7 +13,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="main-section">
+    <div className="main-section mt-5">
       <Container>
         <Badge
           bg="light"

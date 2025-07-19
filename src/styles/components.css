@@ -71,4 +71,22 @@
 .calculator-container {
   background: rgba(255, 255, 255, 0.827);
   border-radius: 15px;
+  max-width: 500px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.calculator-container form {
+  font-size: 0.9rem;
+}
+
+.navigate-back-arrow {
+  padding: 50px 10px;
+  margin-left: 3px;
+  transition: transform 0.3s ease;
+}
+
+.navigate-back-arrow:hover {
+  cursor: pointer;
+  transform: translateX(-2px);
 }

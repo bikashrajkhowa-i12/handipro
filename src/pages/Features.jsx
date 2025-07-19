@@ -1,10 +1,12 @@
 import { Container } from "react-bootstrap";
 import { features } from "../interfaceTexts/features";
+import NavigateBack from "../components/NavigateBack";
 
 const Features = () => {
   return (
     <div className="main-section">
-      <Container className="container-section">
+      <NavigateBack />
+      <Container className="container-section p-5">
         <h1 className="display-4 lead mb-5">Features</h1>
         <div className="p-4">
           {features.map((e, idx) => {

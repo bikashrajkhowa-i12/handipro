@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Container, Table } from "react-bootstrap";
 
+import DetailsForm from "../components/DetailsForm";
+import NavigateBack from "../components/NavigateBack";
+
 import { markets } from "../interfaceTexts/markets";
 import { formFields } from "../configs/constants";
-import DetailsForm from "../components/DetailsForm";
 import { calculateCoreMarket, calculateHandicap } from "../utility/helper";
 
 const DetailsPage = () => {
@@ -76,6 +78,7 @@ const DetailsPage = () => {
 
   return (
     <div className="main-section">
+      <NavigateBack />
       <Container className="container-section d-flex justify-content-center align-items-center">
         <div style={{ width: "500px" }}>
           <div className="mb-5">
@@ -84,7 +87,7 @@ const DetailsPage = () => {
           <div className="d-flex flex-column m-4 gap-5">
             <Container className="calculator-container p-4 d-flex flex-column text-black gap-4">
               <h3>Calculator</h3>
-              <div className="text-start">
+              <div className="text-start gap-4 d-flex flex-column">
                 <DetailsForm
                   fields={fields}
                   onSubmit={handleSubmit}
@@ -92,9 +95,7 @@ const DetailsPage = () => {
                   formData={formData}
                   handleReset={handleReset}
                 />
-              </div>
-              {result && (
-                <div>
+                {result && (
                   <Table
                     striped
                     bordered
@@ -119,8 +120,8 @@ const DetailsPage = () => {
                       </tr>
                     </tbody>
                   </Table>
-                </div>
-              )}
+                )}
+              </div>
             </Container>
             <Container className="p-2 d-flex flex-column">
               <h4 className="lead fw-bold mb-4 text-start">Description:</h4>
