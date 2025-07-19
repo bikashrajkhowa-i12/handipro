@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/app.css";
@@ -10,29 +10,39 @@ import Markets from "./pages/Markets";
 import Features from "./pages/Features";
 import Learn from "./pages/Learn";
 import DetailsPage from "./pages/DetailsPage";
+import TermsAndConditions from "./pages/legal/TermsAndConditions";
+import FooterComp from "./components/FooterComp";
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 
 const App = () => {
+  const location = useLocation();
+  const visibility = !["/termsandconditions", "/privacyandpolicy"].includes(
+    location.pathname
+  );
+
   return (
-    <Router>
-      <div className="app-container">
+    <div className="app-container">
+      {visibility && (
         <header>
           <NavComp />
         </header>
-        <main>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/home" element={<LandingPage />} />
-            <Route path="/markets" element={<Markets />} />
-            <Route path="/features" element={<Features />} />
-            <Route path="/learn" element={<Learn />} />
-            <Route path="/details" element={<DetailsPage />} />
-          </Routes>
-        </main>
-        <footer>
-          <p>© {new Date().getFullYear()} Handipro </p>
-        </footer>
-      </div>
-    </Router>
+      )}
+      <main>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<LandingPage />} />
+          <Route path="/markets" element={<Markets />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/learn" element={<Learn />} />
+          <Route path="/details" element={<DetailsPage />} />
+
+          {/* T&C and Privacy & Policy routes */}
+          <Route path="/termsandconditions" element={<TermsAndConditions />} />
+          <Route path="/privacyandpolicy" element={<PrivacyPolicy />} />
+        </Routes>
+      </main>
+      {visibility && <FooterComp />}
+    </div>
   );
 };
 

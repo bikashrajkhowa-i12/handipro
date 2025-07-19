@@ -82,16 +82,6 @@ const DetailsPage = () => {
             <h1>{displayMarket.name}</h1>
           </div>
           <div className="d-flex flex-column m-4 gap-5">
-            <Container className="p-2 d-flex flex-column">
-              <h4 className="lead fw-bold mb-4 text-start">Description:</h4>
-              <div>
-                <p className="text-start lead">
-                  {displayMarket.info}
-                  {<br />}
-                  {displayMarket.description}
-                </p>
-              </div>
-            </Container>
             <Container className="calculator-container p-4 d-flex flex-column text-black gap-4">
               <h3>Calculator</h3>
               <div className="text-start">
@@ -105,26 +95,42 @@ const DetailsPage = () => {
               </div>
               {result && (
                 <div>
-                  <Table striped="columns">
+                  <Table
+                    striped
+                    bordered
+                    hover
+                    responsive
+                    style={{ borderColor: "#00000037", borderWidth: "1.5px" }}
+                  >
                     <thead>
                       <tr>
                         <th>Result</th>
                         <th>Stake</th>
-                        <th>Pay-out</th>
+                        <th>Payout</th>
                         <th>Profit</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td style={{ color: color }}>{result.outcome}</td>
-                        <td>{result.stake}</td>
-                        <td>{result.payout}</td>
-                        <td style={{ color: color }}>{result.profit}</td>
+                        <td style={{ color }}>{result.outcome}</td>
+                        <td style={{ color: "grey" }}>{result.stake}</td>
+                        <td style={{ color }}>{result.payout}</td>
+                        <td style={{ color }}>{result.profit}</td>
                       </tr>
                     </tbody>
                   </Table>
                 </div>
               )}
+            </Container>
+            <Container className="p-2 d-flex flex-column">
+              <h4 className="lead fw-bold mb-4 text-start">Description:</h4>
+              <div>
+                <p className="text-start lead">
+                  {displayMarket.info}
+                  {<br />}
+                  {displayMarket.description}
+                </p>
+              </div>
             </Container>
           </div>
         </div>

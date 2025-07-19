@@ -5,7 +5,7 @@ const Features = () => {
   return (
     <div className="main-section">
       <Container className="container-section">
-        <h1 className="display-4 lead">Features</h1>
+        <h1 className="display-4 lead mb-5">Features</h1>
         <div className="p-4">
           {features.map((e, idx) => {
             const { name = "", description = "" } = e || {};
