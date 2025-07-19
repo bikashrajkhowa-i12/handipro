@@ -55,6 +55,7 @@ export const calculateCoreMarket = (inputData) => {
 
   return {
     outcome,
+    stake,
     profit: parseFloat(profit.toFixed(2)),
     payout: parseFloat(stake) + parseFloat(profit.toFixed(2)),
   };
@@ -67,75 +68,80 @@ export const calculateHandicap = (inputData) => {
     stake = 100,
     handicap = 0,
     odds = 1,
+    team = "home",
   } = inputData || {};
+
+  const isHomeTeam = team.toLowerCase() === "home";
+  const teamScore = isHomeTeam ? homeScore : awayScore;
+  const opponentScore = isHomeTeam ? awayScore : homeScore;
 
   const hcp = parseFloat(handicap);
   const stakeAmount = parseFloat(stake);
   const decimalOdds = parseFloat(odds);
 
-  const isQuarter = Math.abs(hcp % 1) === 0.25;
-
-  const applyHcp = (hcpPart) => {
-    const adjustedHome = homeScore + hcpPart;
-    if (adjustedHome > awayScore) return "win";
-    if (adjustedHome === awayScore) return "draw";
-    return "loss";
+  const applyHandicap = (hcpVal) => {
+    const adjusted = teamScore + hcpVal;
+    if (adjusted > opponentScore) return "win";
+    if (adjusted < opponentScore) return "loss";
+    return "draw";
   };
 
-  if (isQuarter) {
-    const firstPart = Math.floor(hcp * 2) / 2;
-    const secondPart = firstPart + 0.5;
+  let profit = 0;
+  let outcome = "Loss";
+
+  // Handle quarter handicaps (like -0.25, +0.75)
+  if (Math.abs(hcp % 0.5) === 0.25) {
     const halfStake = stakeAmount / 2;
+    const low = hcp > 0 ? Math.floor(hcp * 2) / 2 : Math.ceil(hcp * 2) / 2;
+    const high = low + (hcp > 0 ? 0.25 : -0.25);
 
-    const res1 = applyHcp(firstPart);
-    const res2 = applyHcp(secondPart);
+    const res1 = applyHandicap(low);
+    const res2 = applyHandicap(high);
 
-    let totalProfit = 0;
+    let totalReturn = 0;
 
-    [res1, res2].forEach((r) => {
-      if (r === "win") {
-        totalProfit += halfStake * (decimalOdds - 1);
-      } else if (r === "draw") {
-        totalProfit += 0; // stake returned
-      } else {
-        totalProfit -= halfStake;
-      }
+    [res1, res2].forEach((res) => {
+      if (res === "win") totalReturn += halfStake * decimalOdds;
+      else if (res === "draw") totalReturn += halfStake;
+      // loss returns nothing
     });
 
-    let outcome = "Loss";
-    if (totalProfit === stakeAmount * (decimalOdds - 1)) outcome = "Win";
-    else if (totalProfit === (stakeAmount * (decimalOdds - 1)) / 2)
+    profit = totalReturn - stakeAmount;
+
+    if (res1 === "win" && res2 === "win") outcome = "Win";
+    else if ([res1, res2].includes("win") && [res1, res2].includes("draw"))
       outcome = "Half Win";
-    else if (totalProfit === 0) outcome = "Push";
-    else if (totalProfit === -stakeAmount / 2) outcome = "Half Loss";
-
-    return {
-      outcome,
-      profit: parseFloat(totalProfit.toFixed(2)),
-    };
-  }
-
-  // Full or half handicaps
-  const result = applyHcp(hcp);
-  let profit = 0;
-
-  if (result === "win") {
-    profit = stakeAmount * (decimalOdds - 1);
-  } else if (result === "draw") {
-    profit = 0;
+    else if (res1 === "draw" && res2 === "draw") outcome = "Push";
+    else if ([res1, res2].includes("loss") && [res1, res2].includes("draw"))
+      outcome = "Half Loss";
+    else outcome = "Loss";
   } else {
-    profit = -stakeAmount;
+    // For full or half handicaps
+    const result = applyHandicap(hcp);
+    if (result === "win") {
+      outcome = "Win";
+      profit = stakeAmount * (decimalOdds - 1);
+    } else if (result === "draw") {
+      if (hcp % 1 === 0) {
+        outcome = "Push";
+        profit = 0;
+      } else {
+        outcome = "Loss";
+        profit = -stakeAmount;
+      }
+    } else {
+      outcome = "Loss";
+      profit = -stakeAmount;
+    }
   }
 
-  const outcomeMap = {
-    win: "Win",
-    draw: "Push",
-    loss: "Loss",
-  };
+  const payout =
+    profit > 0 ? stakeAmount + profit : profit === 0 ? stakeAmount : 0;
 
   return {
-    outcome: outcomeMap[result],
-    profit: parseFloat(profit.toFixed(2)),
-    payout: parseFloat(stake) + parseFloat(profit.toFixed(2)),
+    outcome,
+    stake: stakeAmount,
+    profit: +profit.toFixed(2),
+    payout: +payout.toFixed(2),
   };
 };

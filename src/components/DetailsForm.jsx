@@ -1,23 +1,13 @@
-import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
 const DetailsForm = (props) => {
-  const { fields = {}, onSubmit = {} } = props || {};
-
-  const initialState = fields.reduce((acc, field) => {
-    acc[field.name] = field.default || "";
-    return acc;
-  }, {});
-
-  const [formData, setFormData] = useState(initialState);
-
-  const handleChange = (e) => {
-    const { name, value, type } = e.target || {};
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "number" ? parseFloat(value) : value,
-    }));
-  };
+  const {
+    fields = {},
+    onSubmit = {},
+    handleReset = {},
+    handleFormChange = {},
+    formData = {},
+  } = props || {};
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,7 +24,7 @@ const DetailsForm = (props) => {
                 <Form.Select
                   name={field.name}
                   value={formData[field.name]}
-                  onChange={handleChange}
+                  onChange={handleFormChange}
                   required={field.required}
                   disabled={field.disabled}
                   style={{
@@ -59,7 +49,7 @@ const DetailsForm = (props) => {
                   name={field.name}
                   placeholder={field.placeholder || ""}
                   value={formData[field.name]}
-                  onChange={handleChange}
+                  onChange={handleFormChange}
                   step={field.step}
                   required={field.required}
                   disabled={field.disabled}
@@ -90,11 +80,7 @@ const DetailsForm = (props) => {
       })}
 
       <div className="d-flex justify-content-center gap-2">
-        <Button
-          variant="outline-secondary"
-          type="reset"
-          onClick={() => setFormData(initialState)}
-        >
+        <Button variant="outline-secondary" type="reset" onClick={handleReset}>
           Reset
         </Button>
         <Button variant="success" type="submit">

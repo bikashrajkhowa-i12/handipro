@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
 
 import { markets } from "../interfaceTexts/markets";
 import { formFields } from "../configs/constants";
@@ -8,23 +8,29 @@ import DetailsForm from "../components/DetailsForm";
 import { calculateCoreMarket, calculateHandicap } from "../utility/helper";
 
 const DetailsPage = () => {
-  const [result, setResult] = useState({});
+  const [result, setResult] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { keyName = null } = location.state || {};
 
-  //to check in case of direct access through url, navigate to "/markets"
   useEffect(() => {
     if (!keyName) {
       navigate("/markets");
     }
   }, [keyName, navigate]);
 
+  const fields = formFields[keyName] || [];
+
+  const initialState = fields.reduce((acc, field) => {
+    acc[field.name] = field.default || "";
+    return acc;
+  }, {});
+
+  const [formData, setFormData] = useState(initialState);
+
   const displayMarket = markets
     .flatMap((ele) => ele.items || [])
     .find((i) => i.key === keyName);
-
-  const fields = formFields[keyName] || [];
 
   const calculateResult = (inputData) => {
     const fn = ["1x2", "double_chance", "btts", "over_under"].includes(keyName)
@@ -32,13 +38,41 @@ const DetailsPage = () => {
       : keyName === "handicap"
       ? calculateHandicap
       : null;
-    return fn ? fn(inputData) : {};
+    return fn
+      ? keyName === "btts"
+        ? fn({ ...inputData, result: inputData["btts"] })
+        : fn(inputData)
+      : {};
   };
 
-  const handleSubmit = (e) =>
+  const handleSubmit = (e) => {
     setResult(calculateResult({ ...e, name: keyName }));
+  };
+
+  const handleReset = (e) => {
+    setFormData(initialState);
+    setResult(null);
+  };
+
+  const handleFormChange = (e) => {
+    setResult(null);
+    const { name, value, type } = e.target || {};
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "number" ? parseFloat(value) : value,
+    }));
+  };
 
   if (!displayMarket) return null;
+
+  const color =
+    result?.outcome === "Loss"
+      ? "red"
+      : result?.outcome === "Win"
+      ? "green"
+      : result?.outcome === "Push"
+      ? "blue"
+      : "yellow";
 
   return (
     <div className="main-section">
@@ -58,16 +92,38 @@ const DetailsPage = () => {
                 </p>
               </div>
             </Container>
-            <Container className="calculator-container p-4 d-flex flex-column text-black gap-3">
+            <Container className="calculator-container p-4 d-flex flex-column text-black gap-4">
               <h3>Calculator</h3>
               <div className="text-start">
-                <DetailsForm fields={fields} onSubmit={handleSubmit} />
+                <DetailsForm
+                  fields={fields}
+                  onSubmit={handleSubmit}
+                  handleFormChange={handleFormChange}
+                  formData={formData}
+                  handleReset={handleReset}
+                />
               </div>
               {result && (
-                <p className="text-green">
-                  Outcome: {result.outcome} Pay-out: {result.payout} Profit:{" "}
-                  {result.profit}
-                </p>
+                <div>
+                  <Table striped="columns">
+                    <thead>
+                      <tr>
+                        <th>Result</th>
+                        <th>Stake</th>
+                        <th>Pay-out</th>
+                        <th>Profit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style={{ color: color }}>{result.outcome}</td>
+                        <td>{result.stake}</td>
+                        <td>{result.payout}</td>
+                        <td style={{ color: color }}>{result.profit}</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </div>
               )}
             </Container>
           </div>

@@ -1,9 +1,9 @@
 export const ENABLED_MARKETS = [
   "1x2",
   "double_chance",
+  "btts",
+  "over_under",
   "handicap",
-  "half_time_full_time",
-  "either_half_wins",
 ];
 
 /** Form fields */
@@ -32,13 +32,21 @@ export const formFields = {
     {
       name: "result",
       type: "select",
-      label: "Select",
+      label: "Result",
       required: true,
       options: [
         { label: "W1 (home)", value: "1" },
         { label: "X (draw)", value: "X" },
         { label: "W2 (away)", value: "2" },
       ],
+    },
+    {
+      name: "stake",
+      type: "number",
+      label: "Stake",
+      default: "100",
+      step: "1",
+      disabled: true,
     },
   ],
   double_chance: [
@@ -72,6 +80,14 @@ export const formFields = {
         { label: "12 (home or away)", value: "12" },
         { label: "X2 (away or draw)", value: "X2" },
       ],
+    },
+    {
+      name: "stake",
+      type: "number",
+      label: "Stake",
+      default: "100",
+      step: "1",
+      disabled: true,
     },
   ],
   handicap: [
@@ -149,12 +165,14 @@ export const formFields = {
       name: "homeScore",
       type: "number",
       label: "Home Score",
+      default: "0",
       min: 0,
     },
     {
       name: "awayScore",
       type: "number",
       label: "Away Score",
+      default: "0",
       min: 0,
     },
     {
@@ -162,7 +180,48 @@ export const formFields = {
       type: "number",
       label: "Stake",
       default: "100",
-      placeholder: "Enter stake",
+      step: "1",
+      disabled: true,
+    },
+  ],
+  btts: [
+    {
+      name: "odds",
+      type: "number",
+      label: "Odds",
+      step: "0.01",
+      required: true,
+      min: 0,
+    },
+    {
+      name: "homeScore",
+      type: "number",
+      label: "Home Score (W1)",
+      min: 0,
+      required: true,
+    },
+    {
+      name: "awayScore",
+      type: "number",
+      label: "Away Score (W2)",
+      min: 0,
+      required: true,
+    },
+    {
+      name: "btts",
+      type: "select",
+      label: "Both team to score",
+      required: true,
+      options: [
+        { label: "Yes", value: "yes" },
+        { label: "No", value: "no" },
+      ],
+    },
+    {
+      name: "stake",
+      type: "number",
+      label: "Stake",
+      default: "100",
       step: "1",
       disabled: true,
     },

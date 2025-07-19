@@ -35,7 +35,7 @@ export const markets = [
         emoji: "⚖️",
         info: "Predict outcomes adjusted by goal differences to balance team strength.",
         description:
-          "Handicap scenarios simulate a level playing field by virtually adjusting the score before the match begins. For example, if Manchester City is much stronger than Burnley, Burnley might be given a +1.5 goal head start. Choosing Manchester City -1.5 means they must win by 2 or more goals for your prediction to be correct.",
+          "Handicap predictions help level the playing field when one team is much stronger than the other. In a normal handicap, you adjust the score before the game starts using whole numbers like +1 or -2. For example, if Manchester City is given a -2 handicap, they need to win the match by 3 or more goals for your prediction to be correct. A 2-goal win would count as a draw in this case. In an Asian handicap, the draw is removed entirely, and you can use more detailed numbers like -1.5 or -0.25. So if City is set at -1.5, they must win by 2 or more goals to win; if they win by just 1, it doesn’t count. Some Asian handicap numbers, like -0.25, even split the outcome—if the match ends in a draw, you get back half your money and lose the other half. European handicap is similar to the normal one, using whole numbers, but it includes the draw as an option you can predict. So if you pick City with a -1 European handicap and they win by exactly one goal, the outcome is considered a draw. Each of these systems gives you a different way to look at a match, especially when one team is clearly stronger.",
       },
       {
         key: "half_time_full_time",
