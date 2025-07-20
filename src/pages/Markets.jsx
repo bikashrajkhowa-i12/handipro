@@ -9,7 +9,7 @@ const Markets = () => {
   const navigate = useNavigate();
 
   const onClickCard = (keyName) => {
-    navigate("/details", {
+    navigate(`/markets/${keyName}`, {
       state: {
         keyName: keyName,
       },
@@ -19,8 +19,8 @@ const Markets = () => {
   return (
     <div className="main-section">
       <NavigateBack />
-      <Container className="container-section">
-        <h1 className="mb-5 lead display-4 text-center">Markets</h1>
+      <Container className="container-section pt-5">
+        <h1 className="mb-5 lead display-4">Markets</h1>
         {markets?.map((obj) => {
           const { category = "", items = [] } = obj || {};
           return (

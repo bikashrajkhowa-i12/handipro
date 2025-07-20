@@ -12,7 +12,7 @@ const FooterComp = () => {
       </a>
       |
       <a
-        href="/privacyandpolicy"
+        href="/privacypolicy"
         target="_blank"
         rel="noopener noreferrer"
         style={{ margin: "0 0.5rem", textDecoration: "none", color: "#007bff" }}

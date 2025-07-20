@@ -16,7 +16,7 @@ import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 
 const App = () => {
   const location = useLocation();
-  const visibility = !["/termsandconditions", "/privacyandpolicy"].includes(
+  const visibility = !["/termsandconditions", "/privacypolicy"].includes(
     location.pathname
   );
 
@@ -34,11 +34,11 @@ const App = () => {
           <Route path="/markets" element={<Markets />} />
           <Route path="/features" element={<Features />} />
           <Route path="/learn" element={<Learn />} />
-          <Route path="/details" element={<DetailsPage />} />
+          <Route path="/markets/:key" element={<DetailsPage />} />
 
           {/* T&C and Privacy & Policy routes */}
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
-          <Route path="/privacyandpolicy" element={<PrivacyPolicy />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         </Routes>
       </main>
       {visibility && <FooterComp />}

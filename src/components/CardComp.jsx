@@ -26,7 +26,7 @@ const CardComp = (props) => {
         <div className="mt-auto">
           {ENABLED_MARKETS.includes(keyName) ? (
             <Badge bg="success" text="light" className="rounded-pill">
-              Try It!
+              Explore
             </Badge>
           ) : (
             <Badge bg="warning" text="dark" className="rounded-pill">
