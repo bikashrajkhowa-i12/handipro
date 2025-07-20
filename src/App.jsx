@@ -13,6 +13,7 @@ import DetailsPage from "./pages/DetailsPage";
 import TermsAndConditions from "./pages/legal/TermsAndConditions";
 import FooterComp from "./components/FooterComp";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import PageNotFound from "./pages/PageNotFound";
 
 const App = () => {
   const location = useLocation();
@@ -39,6 +40,9 @@ const App = () => {
           {/* T&C and Privacy & Policy routes */}
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+
+          {/* Page not Found */}
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>
       {visibility && <FooterComp />}
